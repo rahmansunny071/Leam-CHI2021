@@ -1,0 +1,27 @@
+\section{Design Criteria} 
+\label{sec:design}
+We propose the following design principles to address the challenges related to \vita:
+
+\emtitle{D1. In-situ analytics.}
+\vita systems should provide a one-stop-shop (\textbf{C1}) where users can directly
+manipulate (spreadsheets) and visualize (visualization tools) data while writing scripts (notebooks) to immediately view the effects on data and visualizations without context switching between tools.
+
+\emtitle{D2. Multi-view coordination.}
+Beyond integrating multiple views within a single interface, \vita systems should enable coordination between these views (\textbf{C2}).
+Multiple coordinated views capture the context of the user's exploration across different views~\cite{wang2000guidelines} and help users understand the data better as they view it through different connected representations.
+
+\emtitle{D3. Heterogeneous data management.}
+\vita systems should support heterogeneous data types (\eg texts, visualization), treating them as first-class citizens of the underlying data model (\textbf{C3}). Instead of developing bespoke data management solutions, \vita systems should adapt their underlying storage model to
+accommodate these data types and also enable a tight coupling between the data model and the analytical workflows to ensure fast and efficient data access.
+
+\emtitle{D4. Expressivity and accessibility.}
+\vita systems should provide an expressive specification language to represent and communicate the entire breadth of workflows within the domain (\textbf{C4}). 
+%The specification language should characterize the data domain with heterogeneous data types, abstract operations into high level categories, define rules for synthesizing new operations, and capture the coordinated interactions between multiple views. 
+Moreover, the specification language should be accessible to existing tools to allow more expressive operations. 
+For example, the specification language can be packaged as a Python library with an interactive widget with support for a subset of \vita operations in a computational notebook.
+
+\emtitle{D5. Provenance.}
+\vita systems should support advanced provenance tracking for heterogeneous data types and various workflows to ensure reproducibility and encourage workflow and data re-use. 
+Moreover, these systems should track user interactions on visual components to enable versioning of states of and dependencies among different views.
+
+

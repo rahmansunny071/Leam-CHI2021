@@ -1,0 +1,56 @@
+\section{Discussion}
+\label{sec:discussion}
+% \sajreview{We now outline our vision for \vita framework development.}
+
+\todo{Discussion and implications based on study results. drop DB specific stuff.}
+
+\todo{lines of code spent in explore and analyze phase \url{https://arxiv.org/pdf/2008.12828.pdf}}
+
+\todo{many data scientists use off the shel models. at least early on.}
+
+\todo{requirement of debugging, cite NBSAFETY}
+
+We now outline our vision for \system development.
+
+\stitle{Coverage, accessibility, and automation.} 
+Our goal is to increase \system's coverage of \vita workflows~\cite{liu2018bridging} by introducing new \vta operators and adding popular ML and NLP libraries~\cite{mlbazaar} as default operators in Operator View. We can further improve \system's extensibility by enabling users to add their custom-built models as new operators in Operator View and reuse later. To make \vta more accessible to a wider audience, we are working on integrating \vta with an interactive widget that allows users to issue \vta operators from Jupyter notebooks. Other goals include 
+automatically generating \vita workflows given an analysis goal~\cite{bar2020automatically}, recommending next operator based on users' current workflow~\cite{yan2020auto}, and training
+an autoregressive language model like \emph{GPT-3}~\cite{brown2020language} on \vta to automatically compose coordinated views or \system-style user interface based on user specifications in natural language.
+
+\stitle{Interaction at scale.}
+\system should provide interactive responses even with larger datasets. One approach is to
+draw samples of data progressively and then display approximate results. 
+Approximate query processing techniques can support operations
+like \code{aggregate}~\cite{babcock2003dynamic, agarwal2013blinkdb,acharya1999aqua} and \code{visualize}~\cite{rahman2017ve,hellerstein1997online}.
+However, providing meaningful intermediate results progressively for operations like classification
+or clustering is challenging---how to
+determine model meta-parameters without
+scanning the complete data? 
+Progressive computation can be complemented by \emph{optimistic analytics}~\cite{moritz2017trust}, where precise computations run on the background as users explore approximate results. When there is a significant difference between
+the approximate and precise results (\eg classification results vary from ground truth), the analyst can decide
+which parts of the exploration have to be redone.
+Larger datasets also impede direct data manipulation and necessitate the design of interactive and navigable representation of Table View~\cite{bendre2019faster}.
+%As users edit the data, for example, to relabel hundreds of instances, how can we retrain a model interactively?
+
+\stitle{Versioning \vita sessions.}
+\todo{Versioning in the context of data analysis---keeping track of sessions.}
+
+The \system versioning system can maintain a version graph to keep track of fine-grained changes at the unit operation level. 
+\system needs to consider the storage-latency trade-off as a user adds new nodes to the graph: storing entire data ensures faster session reconstruction at the cost of storage while storing delta between subsequent session reduces storage overhead at the cost of increased reconstruction time. 
+Designing a fine-grained version control system for \system offers unique research challenges---besides \vitaframe, \system also needs to checkpoint
+(a) the states of all the front-end components (\eg formatting like font, color, opacity of views), 
+(b) the coordination mappings of views and composite selections, (c) user-defined operator pipelines and custom models, and (d) \vta commands in Notebook View. Existing systems address some of these challenges in isolation (\eg data~\cite{huang2017orpheusdb} and model~\cite{miao2016modelhub} versioning, workflow debugging~\cite{brachmannbyour,miao2016provdb}).
+
+
+
+\stitle{Data management for \vita.}
+Prior work focuses on designing systems for scalable computation (\eg scalable dataframe and query/operator optimizers~\cite{modin}, caching and prefetching for visualization~\cite{taokyrix}), storage models for efficient data access~\cite{tiledb,raasveldt2020data}.
+We discussed related work on versioning~\cite{huang2017orpheusdb,miao2016modelhub,brachmannbyour,miao2016provdb}, approximate query processing~\cite{babcock2003dynamic, agarwal2013blinkdb,acharya1999aqua,rahman2017ve,hellerstein1997online} in earlier sections. \system builds on the earlier work with specific focus on developing an efficient storage model, enabling scalable computation, and performing fine-grained version control. \todo{Discuss how \system is different from a data management system. It's more of a study of an end-to-end tool built on top of these systems.}
+
+
+
+
+
+
+
+

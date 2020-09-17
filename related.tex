@@ -1,0 +1,94 @@
+\section{Related Work}\label{sec:related}
+
+We now summarize existing work on interactive text analysis and visualization, text analysis libraries and frameworks, workflow and task specification for text analysis, and programming environments for data analysis.
+
+\stitle{Domain-specific text analysis tools.}
+There are many commercial tools and research prototypes 
+that provide direct manipulation interfaces to help users
+create specific types of text analysis application:
+sentiment analysis~\cite{zhao2014pearl,wang2015senticompass,brooks2014collaborative} and opinion mining~\cite{miao2009amazing,wu2010opinionseer,mahmud2016predicting}, 
+question answering~\cite{shen2015word,gordon2018iqa,hoque2017cqavis},
+review exploration~\cite{zhang2020teddy, wang2020extremereader, suhara2020opiniondigest}.
+In contrast, \system is designed 
+as a general purpose text analysis tool.
+More
+general-purpose tools such as Weka~\cite{hall2009weka},
+while not limited to
+only text analysis, enable users to
+import data and train a wide range of models using
+a GUI. These systems do not require 
+users to write any code to train and test basic
+models.
+\system, on the other hand,
+provides a combination
+of both a coding environment and interactive GUI, 
+for implementing text analysis workflows. 
+User can either upload pre-trained models from 
+Operations Menu
+or develop custom models in Code Editor. 
+
+\stitle{Visualization for text analysis.}
+Our work here falls into the general text visualization and visual text analytics research, for example,~\cite{collins2009parallel, zhang2020teddy, wu2010opinionseer, zhao2014pearl, dou2013hierarchicaltopics}. 
+These systems employ visualization techniques---both basic 
+(\eg scatterplot, line chart, treemap) and complex (\eg wordcloud, steam graph, flow graph, rose plot)~\cite{liu2018bridging}---to various uses-cases mentioned in the preceding paragraph.
+Text visualization research also focuses on visual
+encoding design~\cite{collins2009parallel,felix2016texttile,chuang2012interpretation,havre2000themeriver}. 
+We refer readers to existing surveys~\cite{liu2018bridging, kucher2018state} for a more complete
+discussion of the broader literature. Earlier work highlight the benefits of integrating interactive visualization with text analysis
+and motivate \system design. However, unlike these tools, using \system, users can employ an any visualization techniques and dynamically link visualizations and data for further exploration. 
+
+\stitle{Analytics Libraries and Frameworks.}
+Off the shelf libraries and frameworks can lower development barriers by encapsulating common code for data preprocessing
+and model development and validation. General-purpose libraries such as scikit-learn~\cite{pedregosa2011scikit} for Python contain a wide array of analysis operations and algorithms. More specialized frameworks such
+as TensorFlow~\cite{abadi2016tensorflow}, Theano~\cite{al2016theano}, PyTorch~\cite{paszke2017automatic},
+and Keras~\cite{documentation2018keras} enable users to construct advanced analysis applications. Systems like MLBazaar~\cite{smith2020machine} connect and link components of these libraries, only creating
+missing functionality themselves. \system also 
+provides a number of built-in functionalities.
+Moreover, \system allows user defined functions that are added to an existing workflow for later use. In recent years, browser-based
+frameworks such as TensorFlow.js~\cite{smilkov2019tensorflow} and Keras.js ~\cite{kerasjs} have grown more popular. \system's browser-based user interface complements this growing trend of web-based frameworks. 
+
+\stitle{Interactive programming environments.}
+Interactive programming is a technique that provides the programmers with continuous feedback for understanding the behavior
+of the under-development program. 
+Computational notebooks such as Jupyter~\cite{jupyter}, Colaboratory~\cite{colab}, and Observable~\cite{observable} allow programmers
+to interleave code with debugging visualizations within their workflows. While the linear structure such notebooks is elegant, they may not fully support the analytical process~\cite{rule2018exploration}. When visualizations are incorporated into notebooks, they are interleaved between code cells. This linear layouts often puts a physical distance
+between related charts, which limits an analyst’s ability to exploit visual signals that arise from multiple charts—especially
+signals resulting from chart interaction.
+Tools like B2~\cite{wu2020b2} and LUX~\cite{lux}, developed as Jupyter notebook extensions, provide a non-linear interface where charts are placed in a separate visualization pane. Both these systems instrument dataframes to track
+the queries expressed in code and synthesize corresponding visualizations. While \system shares the same principal, it additionally enables a Data View any changes made to the underlying data made from the notebook are immediate displayed---a desirable property of such interactive programming environments.
+
+\todo{add more challenges of notebooks}
+
+\stitle{Workflow and task specification.}
+Prior work on workflow specification has focused on several different stages of data exploration, analysis,
+and data cleaning to shift the burden of accurate processing
+from users to systems. To support data
+cleaning, Wrangler~\cite{kandel2011wrangler} combines a mixed-initiative interface with a declarative transformation language.
+To support visualization specification,
+there are a number domain-specific
+abstractions to that formalizes the design space. Vega-Lite~\cite{satyanarayan2016vega} enable
+users to develop 
+interactive data visualizations without
+via \emph{json} specifications. 
+Altair~\cite{vanderplas2018altair} is an analogous Python API for the Vega-Lite. 
+ggplot2~\cite{wickham2016ggplot2}
+abstracts visualizations as a sum of graphical layers
+and its R API uses an addition operator to add graphical elements together.
+However, once a visualization is generated
+users cannot dynamically add new
+interactions to the visualizations.
+\system leverages a grammar for
+text analysis called \vta~\cite{rahman2017ve} that
+supports various text data analysis operations while enabling interactive view coordination. \vta enables users to add interactions to visualizations on the fly. \system implements a Python API to \vta called \vital.
+\vta takes inspiration from existing 
+domain-specific abstractions (\eg relational algebra~\cite{codd}, dataframe algebra~\cite{modin,lara}, and visualization grammar~\cite{satyanarayan2016vega}.
+
+
+
+
+% \stitle{Data management for \vita.}
+% Prior work focuses on designing systems for scalable computation (\eg scalable dataframe and query/operator optimizers~\cite{modin}, caching and prefetching for visualization~\cite{taokyrix}), storage models for efficient data access~\cite{tiledb,raasveldt2020data}.
+% We discussed related work on versioning~\cite{huang2017orpheusdb,miao2016modelhub,brachmannbyour,miao2016provdb}, approximate query processing~\cite{babcock2003dynamic, agarwal2013blinkdb,acharya1999aqua,rahman2017ve,hellerstein1997online} in earlier sections. \system builds on the earlier work with specific focus on developing an efficient storage model, enabling scalable computation, and performing fine-grained version control. \todo{Discuss how \system is different from a data management system. It's more of a study of an end-to-end tool built on top of these systems.}
+
+% \stitle{Data model and algebra.}
+% Our work takes inspiration from existing algebras that provide well-founded semantics for relational databases~\cite{codd}, dataframes~\cite{modin,lara}, and interactive visualizations~\cite{stolte2002polaris,satyanarayan2016vega,satyanarayan2015reactive}. Here we introduce a new grammar for visual text data analytics  and  interactive view coordination, building on earlier work. To the best of our knowledge, \vta  is the first algebra defined for \vita. \todo{Discuss why we chose \vta here by identifying difference with vega-lite and altair.}

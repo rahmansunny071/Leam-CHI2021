@@ -1,0 +1,86 @@
+\section{Observational Study Design}
+\label{sec:study}
+In this section, we present the design of an observational study
+aimed at understanding the impact of \system in performing visual text analysis. 
+Since there is no equivalent system for comparison, 
+we studied how potential users of \system, for example, data scientists, would utilize various features and identified their pros and cons. 
+We selected two text data analysis workflows 
+from Kaggle that the participants implemented in
+\system. Similar use-case driven evaluation have been performed for 
+evaluating various interactive data analytics tools~\cite{fisher2012trust,moritz2017trust}. 
+Our study was designed to answer the following questions:
+\begin{itemize}
+    \item[\textbf{RQ1}] How did \system and its components affect participants' experience at various steps within their text analysis workflow?
+    \item[\textbf{RQ2}] How did participants employ to various \system features within their analytics pipleline, \eg direct data manipulation, built-in operators, notebook commands, view coordination, and in-situ visualization. 
+\end{itemize}
+
+\subsection{Participants}
+\label{sec:participants}
+To ensure that prior experience with text data analysis 
+didn't affect the performance of participants during the tasks, 
+we recruited two participants at \company with extensive experience in model building, hypothesis testing, and insight exploration with text data. One of the participants is a senior researcher with extensive experience in review analysis, personal assistant, and conversational bot design. The other participant is a software engineer
+experienced in NLP pipeline development, deployment, and management
+as well as text analysis tool design and development. 
+Note that none of the authors of the paper were participants.
+All of the authors were involved in conducting various phases of the study.
+
+\subsection{Tasks}
+\label{sec:tasks}
+We selected two workflows from Kaggle related to analyzing user generated text~\cite{tweet, spam}. The workflows were chosen based on their popularity, objective (exploratory text data analysis), and similarity with participants everyday analytics workflow. Analyzing user generated text, like customer reviews, question-answers, are primary research focus of \company. Therefore, participants were familiar with various stages of these workflows. Since each participants implemented only one workflow, we chose similar workflows for ease of comparison. 
+
+One of the workflows, \emph{tweet analysis}~\cite{tweet}, builds a machine learning model that predicts which Tweets are about real disasters and which one’s are not. This workflow has been viewed more than thirty thousand times in Kaggle. The other workflow, \emph{spam detection}~\cite{spam}, is similar to \emph{tweet analysis} and develops a model for classifying SMSs as legitimate or spam. This workflow is more recent with six hundred views and boasts a 98\% accuracy on the given corpus. Since model training phase can be time consuming, for time management, we provided the participants with pre-trained models which they uploaded in \system. So for both workflows the goal of the participants was to preprocess a separate test dataset and then classify the data using the pre-trained model. Then they explored the data and the results generated to verify the classification performance of the pre-trained models on the test dataset. Participants were free to use any feature of \system or write code in Code Editor for the purpose of exploring the data, understanding key features and their relationships, and then evaluating the classifier. \todo{The test dataset of the tweet analysis workflow contained XXX tweets while the SMS dataset contained YYY text messaged.}
+
+\subsection{Study Procedure}
+\label{sec:procedure}
+The entire study lasted for about 75 minutes.
+The study consisted of three phases: 
+(a) an introductory phase to help participants familiarize themselves with \system,
+(b) a workflow execution phase where the participants used \system to implement two Kaggle workflows (described later), and
+(c) a semi-structured interview to collect qualitative feedback regarding the workflow execution phase. 
+\candidate{The study protocol along with the list of tasks, surveys, 
+and interview questionnaires are included in the supplementary material.}
+We now explain each of the phases of our study.
+ 
+\stitle{Phase 1: Introduction to \system.}
+We began the study by 
+explaining the features of \system while walking user through
+the review analysis workflow of Teddy~\cite{zhang2020teddy}. 
+This phase also involved a  warm-up session where the participants 
+used \system
+for about 10 minutes to 
+familiarize themselves with various features. The entire 
+introduction phase took about 20 minutes.
+
+\stitle{Phase 2: The Workflow Execution Phase.}
+The purpose of the workflow execution phase was to evaluate the effectiveness of \system 
+in enabling interactive in-situ text data analysis. 
+Before starting a workflow participants
+were asked to upload the relevant test data and
+a pre-trained classification
+model trained on the data. 
+Each participant performed various
+text analysis and visualization
+tasks within a given workflow (mentioned in Section~\ref{sec:tasks}) using \system. 
+We provided a documentation of \system
+in a Google Doc to allow the
+participants to look up usage of various
+\system feature if required.
+This session laster for about 35-40 minutes.
+We recorded the participants' interactions
+with system using screen capture software. 
+
+\stitle{Phase 3: Interview Phase.} 
+We conducted a semi-structured interview to 
+identify pros and cons of \system
+and to understand the reasoning behind participants' choices of various features while implementing the workflow. 
+We also asked participants to comment on their overall impression of 
+\system, its pros and cons, and to provide feedback for future enhancements. 
+This session lasted for about 15 minutes.
+
+% \subsection{Evaluation} 
+% We evaluated the accuracy and
+% completion time for all of the tasks. 
+% We combined this analysis with the findings from a qualitative survey, interview, and screen/audio recording data to provide insights that can be corroborated across multiple sources. Moreover, we analyzed the survey responses to quantify the usability of both the systems. We then measured the statistical significance of the comparisons between the two systems.
+% For example, we analyzed the video recordings of participants' interaction with the systems during the quiz phase.  
+
+

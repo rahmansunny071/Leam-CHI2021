@@ -1,0 +1,83 @@
+\section{Introduction}\label{sec:intro}
+\todo{One possible framing---reimagining notebooks. simple idea, make notebook the one-stop-shop: manipulate, operate, analyze (MOA). made possible by VTA to issue operations that deal with viz and text while enabling coordination between data, code, and viz. Why VTA? coz more powerful than Vega-Lite or altair---supports external coordination. 
+But why only text data? If we are taking the reimagining notebooks route, may be sticking to text data anlysis is not enough. One way to frame this is by saying that's our typical workflow at Megagon, so we demonstrate usability with this domain.}
+
+With the rapid  growth of the e-commerce economy, the internet has become the platform for many of our everyday activities, from shopping to dating, to job searching, to travel booking.  A recent study projects the worldwide e-commerce sales to be around six trillion dollars by 2023~\cite{ecommerce}, nearly a 50\% increase over the current market. This growth has contributed to the proliferation of digital text, particularly user-generated text (reviews, Q\&As, discussions), which often contain useful information for improving the services and products on the web. Enterprises increasingly adopt text mining technologies to extract, analyze, and summarize such information from the unstructured text data.
+Like data analysis at large, text data analysis also benefits from interactive workflows and visualizations as they facilitate accessible, rapid iterative analysis. Therefore, we characterize the text data analysis process more formally as visual interactive text analysis (\vita hereafter). A challenging aspect of \vita is its iterative and non-linear nature---it is a multistage process that involves tasks like data preprocessing and transformation, model building, hypothesis testing,
+and insight exploration, all of which require multiple iterations to obtain satisfactory outcomes.
+
+%\saj{
+% With the rapid  growth of e-commerce services, 
+% the Internet has become the platform for many of our everyday activities, from shopping to dating, to job searching, to travel booking. A recent study projects the worldwide e-commerce sales to be around six trillion dollars by 2023~\cite{ecommerce}, nearly a 50\% increase over the current market. This growth has contributed to the proliferation of digital text, particularly user-generated text (reviews, Q\&As, discussions, etc.), which often contain information that can be useful for improving the services and products on the web. Enterprises often adopt text mining technologies
+% to analyze, extract, and summarize such information from the unstructured text data. 
+% The text analysis process is
+% often \emph{interactive} (\ie users interact with various tools and methods to process and analyze data)
+% and \emph{visual} (\ie users explore data and their visual representations to test hypothesis and extract insights). Therefore, we characterize the process more formally as visual interactive text analysis (\vita hereafter). A challenging aspect of \vita is its iterative and non-linear nature---it is a multistage process that involves tasks like data preprocessing and transformation, model building, hypothesis testing,
+% and insight exploration, all of which require multiple iterations to obtain satisfactory outcomes.
+% }
+
+
+%The Internet has become the platform for many of our everyday activities, from shopping to dating, to job searching, to travel booking.  One driving force behind this is the rapid  growth of e-commerce; its market size is expected to reach one trillion dollars in the US alone and more than six trillion dollars worldwide by 2023~\cite{ecommerce}. This growth directly reflects the amount of digital text, particularly user-generated text (reviews, Q\&As, discussions, etc.), created through online services and products. These online text datasets often contain information that can be useful for improving the services and  products on the web and beyond.  Enterprises adopt text mining technologies to analyze and extract information from unstructured text in order to enhance their business decisions and customer satisfaction.  
+
+% For example, most e-commerce platforms allow 
+% consumers to leave  reviews and  display and summarize existing reviews to collect feedback and help facilitate customer decision-making. Similarly enterprises use reviews to track and respond to customer feedback and adjust their offerings. For ex- ample, a review about a hotel typically mentions only a couple of aspects about the hotel, such as cleanliness and location, out of dozens of possible aspects. 
+%
+% However, online generated text can frequently be noisy, incomplete, and sparse in informational content. Cleaning, analyzing, searching, extracting information, identifying and exploring topics in sparse and noisy text collections is difficult without effective tools.
+
+While there are many commercial and open-source tools that support various stages of \vita~\cite{liu2018bridging, mlbazaar}, none of these capture the end-to-end \vita pipeline. 
+For example, spreadsheets are suitable for directly processing and manipulating  data, computational notebooks enable flexible exploratory analysis and modeling, and visualization systems, typically based on chart templates, facilitate quick interactive visual analysis. There are also many customized text analytics tools~\cite{liu2018bridging}, often in the form of research prototypes, that support specific use-cases like review exploration~\cite{zhang2020teddy}, sentiment analysis~\cite{kucher2018state}, and text summarization~\cite{carenini2006interactive}.
+Unfortunately, none of these solutions accommodate the inherently cyclic, trial-and-error-based nature of \vita pipelines in an integrated manner.
+ 
+\begin{figure}[!htb] 
+\vspace{-10pt}
+  \centering
+  \includegraphics[width=\linewidth]{figures/fe_leam.pdf}
+  \caption{\small \system user interface. (A) Operator View enables users to perform visual text analytics (\vita) operations using drop-down menus, (B) Visualization View 
+  holds a carousel of interactive visualizations created by users, (C) Table View displays the data and its subsequent transformations, and (D) Notebook View allows users to compose and run \vita operations using a declarative language. Inset (E) shows the \vta \emph{json} specification for the bar chart operator in Operator View. Inset (F) shows a declarative \vta command for interacting with the bar chart from Notebook View. \label{fig:fe}} 
+ \vspace{-15pt}
+\end{figure}
+%There are many commercial and open source tools such as spreadsheets for directly processing and manipulating  data, computational notebooks for flexible exploratory analysis and modeling, and visualization systems, typically based on chart templates, for quick interactive visual analysis. These general tools support different stages of text data analytics with varying degrees of effectiveness and user satisfaction. There are also many  application specific text analytics tools, often in the form of research prototypes, customized to specific application domains~(e.g., \saj{a recent work by Liu et al.~\cite{liu2018bridging} identified 263 academic papers on visual text analysis in the last 25 years}).
+
+%However none of these capture the end-to-end flow while supporting the iterative/nonlinear nature of text data analytics. Data analysis from data discovery to presentation is not a straight linear path. Instead, it is an iterative  process with regressions (zig-zags) and recurrences  along the way~\cite{kandel2011research}, where users essentially run virtual experiments on data, asking questions and (re)forming and testing hypotheses.  Text data analytics pipelines are no exception in this sense.  
+% As Tukey and Wilk observed~\cite{tukey1965data}, data analysis is like doing scientific experiments in many ways. 
+%We need new visual interactive text analytics (VITA) tools to adequately support the inherently cyclic, trial-and-error based nature of text analysis and mining pipelines in an integrated manner.
+
+% -- copy of the abstract -- 
+% Expand and provide technical insights for the contributions 
+% 
+% solution 
+
+While supporting the entire \vita life-cycle within a single system does seem natural, developing it leads to several challenges related to (a) extensibility and expressivity of \vita workflows, (b) their continuity and reproducibility, (c) data heterogeneity and provenance, and (d) synchronization of user interactions. We document these challenges in Section~\ref{sec:example}. These challenges are a culmination of (1) our conversations with practitioners while working in an industry research lab, part of a larger company with more than three hundred e-commerce subsidiaries, (2) prior research, particularly those  reporting from interview studies on data analysis workflows~\cite{zhang2020teddy,lee2020demystifying}, and (3) our experience in developing and evaluating interactive data systems. As such, the list of challenges here is intended to be a useful guide informing research and development on text analytics systems, not a comprehensive enumeration, and inevitably reflects our personal taste. We propose a set of design criteria (desiderata) to address the challenges of a \vita system (Section~\ref{sec:example}). One crucial theme underlying these criteria is the consideration of data analysis as a single continuum, not as discrete steps of tasks performed in isolation.
+
+%In this paper, we first identify several challenges in text data analytics. 
+%These challenges are a culmination of (1) our conversations with practitioners while working in an industry research lab, part of a larger company with more than three hundred e-commerce subsidiaries, (2) prior research, particularly those  reporting from interview studies on data analysis workflows, and (3) our experience in developing and evaluating interactive data systems. As such, the list of challenges here is intended to be a useful guide informing research and development on text analytics systems, not a comprehensive enumeration, and inevitably reflects our personal taste. 
+
+%To address these challenges, we make a case for integrated visual text analytics systems, proposing a set of design criteria (desiderata) for such systems.   
+% Give specifics on what is so special about integrated visual text analytics
+% elaborate on this more  
+%One important theme underlying these criteria is the consideration of data analysis as a single continuum, not as discrete steps of tasks performed in isolation. 
+% This is important because  prior research on interactive visual data analysis systems often treated exploratory analysis as an end without much consideration on what comes before and after. 
+% To be sure, exploratory insight and hypothesis generation are useful and often necessary. But they are not sufficient for addressing the challenges facing text mining. Data scientists need more integrative systems that, for example, take into the full data analysis workflow into account, minimizing the friction with established practices and positioning itself within the larger ecosystem of tools and systems. 
+% new systems,integration with  exploratory visual analysis with confirmatory- and model-based analysis (supervised as well as unsupervised) across various stages of data analysis
+% Talk about the "whole product" idea and the   
+
+% solution contributions (why it is a good solution)
+
+In this paper, we introduce \system, a one-stop-shop for visual interactive text analysis. \system combines the advantages of spreadsheets, computational notebooks, and visualization tools by integrating a Notebook View with interactive views of raw and transformed data (Figure~\ref{fig:fe}). A key component in the design of \system is a visual text algebra (\vta) that enables users to specify complex \vita operations over heterogeneous data and their visual representations; either using a declarative language in the Notebook View (Figure~\ref{fig:fe}F) or by creating operators in the front-end that translates to \emph{json}-style \vta specifications (Figure~\ref{fig:fe}E). Through usage examples, we demonstrate the expressivity of \vta and how it enables \system to support diverse tasks ranging from data cleaning to visualization. Moreover, to facilitate efficient execution of \vta on heterogeneous data, we introduce a new data model extending dataframes called \vitaframe. Based on our experience in developing \system,
+we have identified several system design challenges related to storage model efficiency, scalable computation of \vita workflows, data and workflow versioning, and workflow optimization. To address these challenges, we identify several research directions that may enhance the capabilities of \system. We have made the current version of \system open-source at~\url{https://github.com/megagonlabs/leam}.
+
+%We develop \system, an integrated visual text analytics system, based on the design criteria proposed.   \system combines the advantages of computational notebooks and interactive visualizations by incorporating and coupling a notebook view with interactive views of raw and transformed data. To this end, \system has four key user interface elements: (a) an operator view where users can select and issue \vita operations from a menu, (b) a table view that displays the underlying data, (c) a visualization view where users can add visualizations, and (d) a notebook view where users issue \vita operations using a declarative language (see Figure~\ref{fig:fe}).
+
+% \sajreview{Figure~\ref{fig:fe} shows the current user interface of \system which consists for four key components: (a) an operator view where users can select and issue \vita operations from a menu, (b) a \emph{table view} that displays the underlying data, (c) a summary view where users can add visualizations, and (d) a notebook view where users issue \vita operations using a declarative language.}
+
+
+%We build \system on a visual text algebra (\vta) that  treats heterogeneous data and their visual representation as first class objects, encapsulating a core set of \vita operations. \vta endows \system with extensibility and expressivity, which in turn enables flexible support for diverse tasks ranging from data cleaning to visualization. We also introduce a view coordination algebra to enable users to declaratively specify interactive coordination between arbitrary views and visualizations. To facilitate the \vta and view coordination operations on data, \system also contributes a new data column model extending dataframes. 
+% evaluation 
+%Through usage examples, we demonstrate the expressivity of \system  and gather early insights to inform the ongoing system development. We then discuss future enhancements to \system, outlining our vision. We have made \system available as an open source software at~\url{https://github.com/megagonlabs/leam}.    
+
+The goal of this paper is to explore challenges in and design considerations for \vita systems development,
+present vital components of \system that enable interactive text analysis (\eg \vitaframe and \vta), and identify
+some concrete research directions based on our experience of developing \system.
+
+% recommendations 
+
